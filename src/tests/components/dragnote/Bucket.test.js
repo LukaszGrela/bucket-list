@@ -1,9 +1,29 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import Bucket from '../../../components/dragnote/Bucket';
 
-test('Should render corectly', () =>{
-     const wrapper = shallow(<Bucket />);
+const identity = el => el;
+const OriginalBucket = Bucket.DecoratedComponent;
 
-     expect(wrapper).toMatchSnapshot();
+let wrapper, addNoteHandler, onDrop, isOver, canDrop;
+
+beforeEach(() => {
+    addNoteHandler = jest.fn();
+    onDrop = jest.fn();
+    isOver = false;
+    canDrop = false;
+
+    wrapper = shallow(<OriginalBucket
+        addNoteHandler={addNoteHandler}
+        onDrop={onDrop}
+        isOver={isOver}
+        canDrop={canDrop}
+        connectDropTarget={identity}
+    />);
+
+});
+
+test('Should render corectly', () => {
+
+    expect(wrapper).toMatchSnapshot();
 })

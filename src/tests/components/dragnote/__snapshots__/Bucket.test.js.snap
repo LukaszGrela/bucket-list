@@ -1,7 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should render corectly 1`] = `
-<div>
-  Bucket
+<div
+  className="bucket"
+>
+  <div
+    className="bucket-name"
+  />
+  <div
+    className="notes-container"
+  >
+    <div
+      className="add-note"
+    >
+      <AddBucketButton
+        handleClick={[Function]}
+      />
+    </div>
+  </div>
+  <div
+    className="bucket-toolbar"
+  >
+    Add Note
+  </div>
 </div>
 `;
