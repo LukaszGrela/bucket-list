@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/AddBucketButton.scss'
 
 export class AddBucketButton extends React.Component {
 
@@ -10,14 +11,16 @@ export class AddBucketButton extends React.Component {
 
     render = () => {
         return (
-            <button className='add-bucket-button'
-                onClick={this.clickHandler}>+</button>
+            <div className='add-bucket-button'>
+                <button
+                    onClick={this.clickHandler}>+</button>
+            </div>
         )
     }
 }
 
 AddBucketButton.propTypes = {
-    handleClick:PropTypes.func.isRequired
+    handleClick: PropTypes.func.isRequired
 }
 
 export default (AddBucketButton);

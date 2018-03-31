@@ -15,7 +15,7 @@ test('should render correctly', () => {
 });
 
 test('should execute callback action', () => {
-    const button = wrapper.find('.add-bucket-button');
+    const button = wrapper.find('.add-bucket-button button');
 
     expect(button).toHaveLength(1);
 
