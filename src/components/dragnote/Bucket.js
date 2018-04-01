@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddBucketButton from './AddBucketButton';
+import AddButton from './AddButton';
 import Note from './Note';
 import { DropTarget } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
@@ -22,18 +22,19 @@ class Bucket extends React.Component {
         return connectDropTarget(
 
             <div className={'bucket' + (className ? ' ' + className : '')}>
-                <div className='bucket-name'>{name}</div>
-                <div className='notes-container'>
-                    {
-                        notes.loading ? "Notes loading..." :
-                            list.map((note, index) => <Note key={note.id} {...note} />)
+                <div className='bucket-content'>
+                    <div className='bucket-name clearfix'>{name}</div>
+                    <div className='notes-container clearfix'>
+                        {
+                            notes.loading ? "Notes loading..." :
+                                list.map((note, index) => <Note key={note.id} {...note} />)
 
-                    }
-                    <div className='add-note'>
-                        <AddBucketButton handleClick={this.addNote} />
+                        }
                     </div>
+                    <AddButton
+                        className='add-note clearfix'
+                        handleClick={this.addNote} />
                 </div>
-                <div className='bucket-toolbar'>Add Note</div>
             </div>
         )
     };

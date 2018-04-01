@@ -3,10 +3,13 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import Bucket from './Bucket';
-import AddBucketButton from './AddBucketButton';
+import AddButton from './AddButton';
 import { connect } from 'react-redux';
 import { addBucket, swapBuckets } from '../../actions/actionBuckets';
 import { addNote } from '../../actions/actionNotes';
+
+
+import './styles/DragNoteContainer.scss';
 
 class DragNoteContainer extends React.Component {
     addNote = (bucketId) => {
@@ -33,26 +36,31 @@ class DragNoteContainer extends React.Component {
         const { notes, buckets } = this.props;
         return (
             <div className='drag-note-container'>
-                <div>This is the DnD component, it will contain buckets and notes</div>
+                {/*<div>This is the DnD component, it will contain buckets and notes</div>
                 <div>Add Bucket Button -> Input Bucket Form
                 -> Cancel|OK -> dispatch addBucket
                 -> firebase Rejected->Show Error Message|Fulfilled
                 -> update store with new Bucket
-                -> update view</div>
-                <div className='bucket-container'>
-                    {
-                        buckets.loading ? "Loading buckets..."
-                            : buckets.list.map((bucket, index) => <Bucket
-                                className='item'
-                                key={bucket.id}
-                                {...bucket}
-                                notes={notes}
-                                onDrop={this.onDrop}
-                                addNoteHandler={this.addNote}
-                            />)
-                    }
-                    <div className='item'>
-                        <AddBucketButton handleClick={this.addBucket} />
+                -> update view</div>*/}
+                <div className='drag-note-container-wrapper'>
+                    <div className='main-content'>
+                        <div className='bucket-container'>
+                            <div className='bucket-list'>
+                                {
+                                    buckets.list.map((bucket, index) => <Bucket
+                                        className='item'
+                                        key={bucket.id}
+                                        {...bucket}
+                                        notes={notes}
+                                        onDrop={this.onDrop}
+                                        addNoteHandler={this.addNote}
+                                    />)
+                                }
+                                <div className='item'>
+                                    <AddButton handleClick={this.addBucket} />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

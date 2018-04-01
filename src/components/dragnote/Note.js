@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 
+
+import './styles/Note.scss';
+
 class Note extends React.Component {
     render = () => {
         const { text, connectDragSource } = this.props;

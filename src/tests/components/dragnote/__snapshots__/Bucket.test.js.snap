@@ -5,23 +5,18 @@ exports[`Should render corectly 1`] = `
   className="bucket"
 >
   <div
-    className="bucket-name"
-  />
-  <div
-    className="notes-container"
+    className="bucket-content"
   >
     <div
-      className="add-note"
-    >
-      <AddBucketButton
-        handleClick={[Function]}
-      />
-    </div>
-  </div>
-  <div
-    className="bucket-toolbar"
-  >
-    Add Note
+      className="bucket-name clearfix"
+    />
+    <div
+      className="notes-container clearfix"
+    />
+    <AddButton
+      className="add-note clearfix"
+      handleClick={[Function]}
+    />
   </div>
 </div>
 `;
