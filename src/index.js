@@ -13,4 +13,4 @@ ReactDOM.render(
     <Provider store={store}>
         <AppRouter />
     </Provider>,
-    document.getElementById('app'));
+    document.getElementById('root'));
