@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Page404 from '../pages/Page404';
-import Home from '../pages/Home';
 import DragNote from '../pages/DragNote';
 
 const AppRouter = () => (
