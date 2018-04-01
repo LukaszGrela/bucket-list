@@ -2,7 +2,7 @@
 
 exports[`should render correctly 1`] = `
 <div
-  className="add-bucket-button"
+  className="add-button"
 >
   <button
     onClick={[Function]}

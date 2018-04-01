@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { AddBucketButton } from '../../../components/dragnote/AddBucketButton';
+import { AddButton } from '../../../components/dragnote/AddButton';
 
 
 let wrapper, handleClick;
 beforeEach(() => {
     handleClick = jest.fn();
-    wrapper = shallow(<AddBucketButton 
+    wrapper = shallow(<AddButton 
         handleClick={handleClick}/>);
 });
 
@@ -15,7 +15,7 @@ test('should render correctly', () => {
 });
 
 test('should execute callback action', () => {
-    const button = wrapper.find('.add-bucket-button button');
+    const button = wrapper.find('.add-button button');
 
     expect(button).toHaveLength(1);
 

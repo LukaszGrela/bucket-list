@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles/AddBucketButton.scss'
+import './styles/AddButton.scss'
 
-export class AddBucketButton extends React.Component {
+export class AddButton extends React.Component {
 
     clickHandler = () => {
         this.props && this.props.handleClick();
     }
 
     render = () => {
+        const { className } = this.props;
         return (
-            <div className='add-bucket-button'>
+            <div className={'add-button' + (className ? ' ' + className : '')}>
                 <button
                     onClick={this.clickHandler}>+</button>
             </div>
@@ -19,8 +20,8 @@ export class AddBucketButton extends React.Component {
     }
 }
 
-AddBucketButton.propTypes = {
+AddButton.propTypes = {
     handleClick: PropTypes.func.isRequired
 }
 
-export default (AddBucketButton);
+export default (AddButton);

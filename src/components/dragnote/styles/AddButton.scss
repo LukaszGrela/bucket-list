@@ -1,0 +1,10 @@
+.add-button {
+    display: inline-block;
+    overflow: hidden;
+    button {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        padding: 1rem;
+    }
+}
