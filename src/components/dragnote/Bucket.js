@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddButton from './AddButton';
 import Note from './Note';
 import { DropTarget } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 import './styles/Bucket.scss';
+import AddWithText from '../AddWithText';
 
 
 
 class Bucket extends React.Component {
 
-    addNote = () => {
+    addNote = (note) => {
         const { addNoteHandler, id } = this.props;
-        addNoteHandler && addNoteHandler(id);
+        addNoteHandler && addNoteHandler(id, note);
     }
     render = () => {
         const { id, connectDropTarget,
@@ -31,9 +31,12 @@ class Bucket extends React.Component {
 
                         }
                     </div>
-                    <AddButton
-                        className='add-note clearfix'
-                        handleClick={this.addNote} />
+                    <div className='add-note clearfix'>
+                        <AddWithText
+                            placeholder={'Type a note'}
+                            handleClick={this.addNote}
+                        />
+                    </div>
                 </div>
             </div>
         )

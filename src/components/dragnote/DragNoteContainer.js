@@ -3,29 +3,29 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import Bucket from './Bucket';
-import AddButton from './AddButton';
 import { connect } from 'react-redux';
 import { addBucket, swapBuckets } from '../../actions/actionBuckets';
 import { addNote } from '../../actions/actionNotes';
 
 
 import './styles/DragNoteContainer.scss';
+import AddWithText from '../AddWithText';
 
 class DragNoteContainer extends React.Component {
-    addNote = (bucketId) => {
+    addNote = (bucketId, note) => {
         /*
         TODO: show form modal
          */
         const { addNote } = this.props;
-        addNote(bucketId, { text: 'My note #' + (Math.floor(Math.random() * 100000)) });
+        addNote(bucketId, { text: note });
     }
-    addBucket = () => {
+    addBucket = (title) => {
         /*
         TODO: show input field for buckets
          */
         const { addBucket } = this.props;
         //create dummy bucket name
-        addBucket('bucket-' + (Math.floor(Math.random() * 100000)));
+        addBucket(title);
     }
     onDrop = (bucketId, { id, bucketId: oldBucketId }) => {
         console.log(`Move note ${id} from bucket ${oldBucketId} to ${bucketId}`);
@@ -56,8 +56,11 @@ class DragNoteContainer extends React.Component {
                                         addNoteHandler={this.addNote}
                                     />)
                                 }
-                                <div className='item'>
-                                    <AddButton handleClick={this.addBucket} />
+                                <div className='new-bucket'>
+                                    <AddWithText
+                                        placeholder={'Add new bucket'}
+                                        handleClick={this.addBucket}
+                                    />
                                 </div>
                             </div>
                         </div>

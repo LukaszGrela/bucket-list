@@ -1,7 +1,7 @@
 {
-  "name": "dnd-choice",
-  "version": "0.5.1",
-  "description": "Drag and Drop activity - DnD Choice example",
+  "name": "bucket-list",
+  "version": "0.8.1",
+  "description": "Drag and Drop functionality test - Bucket List",
   "main": "index.js",
   "author": "Lukasz 'Severiaan' Grela",
   "license": "MIT",

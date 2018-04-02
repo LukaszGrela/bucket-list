@@ -8,7 +8,7 @@ class DragNote extends React.Component {
     render = () => {
         return (
             <div className='drag-note'>
-                <header>Drag a Note</header>
+                <header>Bucket List</header>
                 {/* Create a note bucket then create a note. You can create many buckets and move notes across. */}
                 <DragNoteContainer />
             </div>

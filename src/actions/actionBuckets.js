@@ -12,7 +12,7 @@ export const addBucket = (name) => {
     return (dispatch, getState) => {
         dispatch(addBucketStarted());
         return new Promise((resolve, reject) => {
-            resolve({ name, id: name });
+            resolve({ name, id: 'bucket-' + (Math.floor(Math.random() * 100000)) });
         }).then((payload) => {
             dispatch(addBucketFinished(payload, true));
         }).catch(error => {

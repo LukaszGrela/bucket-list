@@ -37,12 +37,7 @@
             border-radius: 0 0 0.6rem 0.6rem;
             background-color: #be4443;
             border-bottom: 0.2rem solid darken($color: #be4443, $amount: 10);
-            flex: 0 0 auto;
-            position: relative;
-            button {
-                border: none;
-                background: none;
-            }
+            padding: 0 0.4rem 0.4rem 0.4rem;
         }
     }
 }
