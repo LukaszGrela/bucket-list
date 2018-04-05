@@ -13,6 +13,48 @@ import AddWithText from '../AddWithText';
 import { ItemTypes } from './ItemTypes';
 
 class DragNoteContainer extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            list: props.list || []
+        }
+    }
+
+    componentWillReceiveProps = (nextProps, nextContext) => {
+        const { list = [] } = nextProps;
+        const { list: pList } = this.state;
+        if (list.length !== pList.length) {
+            console.log("setState", list);
+            this.setState(prevState => ({
+                list
+            }));
+        }
+    }
+
+    findBucket = (bucketId) => {
+        const { list } = this.state;
+        const bucket = list.find(({ id }) => id === bucketId);
+        return { index: list.indexOf(bucket), bucket };
+    }
+    reorderBucket = (bucketId, targetBucketId, order) => {
+        const { bucket, index } = this.findBucket(bucketId);
+        const { bucket: targetBucket, index: targetIndex } = this.findBucket(targetBucketId);
+
+        const { list } = this.state;
+
+        let newList = [...list];
+        newList[order] = bucket;
+        newList[index] = targetBucket;
+
+        
+        this.setState(prevState => ({
+            list:newList
+        }));
+
+    }
+
     addNote = (bucketId, note) => {
         /*
         TODO: show form modal
@@ -34,9 +76,12 @@ class DragNoteContainer extends React.Component {
         swapBuckets(id, oldBucketId, bucketId);
     }
     render = () => {
-        const { notes, buckets,
-            reorderBucket,
-            findBucket } = this.props;
+        const {
+            notes,
+            buckets,
+            reorderBucket
+        } = this.props;
+        const { list } = this.state;
         return (
             <div className='drag-note-container'>
                 {/*<div>This is the DnD component, it will contain buckets and notes</div>
@@ -51,15 +96,15 @@ class DragNoteContainer extends React.Component {
                         <div className='bucket-container'>
                             <div className='bucket-list'>
                                 {
-                                    buckets.list.map((bucket, index) => <Bucket
+                                    list.map((bucket, index) => <Bucket
                                         type={ItemTypes.BUCKET}
                                         className='item'
                                         key={bucket.id}
                                         {...bucket}
                                         notes={notes}
                                         onDrop={this.onDrop}
-                                        reorderBucket={reorderBucket}
-                                        findBucket={findBucket}
+                                        reorderBucket={this.reorderBucket}
+                                        findBucket={this.findBucket}
                                         addNoteHandler={this.addNote}
                                     />)
                                 }
@@ -78,18 +123,22 @@ class DragNoteContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state, props) => ({
-    buckets: state.buckets,
-    notes: state.notes
-});
+const mapStateToProps = (state, props) => {
+    const { buckets, notes } = state;
+    const list = buckets.list.sort((a, b) => a.order > b.order);
+    return {
+        list,
+        buckets,
+        notes
+    }
+};
 const mapDispatchToProps = (dispatch, props) => ({
     addBucket: (name) => dispatch(addBucket(name)),
     addNote: (bucketId, note) => dispatch(addNote(bucketId, note)),
     swapBuckets: (noteId, fromBucketId, toBucketId) => dispatch(swapBuckets(noteId, fromBucketId, toBucketId)),
     reorderBucket: (bucketId, targetBucketId, order) => {
         console.log(`reorderBuckets(bucketId=${bucketId}, targetBucketId=${targetBucketId}, order=${order})`);
-    },
-    findBucket: (bucketId) => ({ index: -1, bucket: undefined })
+    }
 });
 export default
     DragDropContext(HTML5Backend)(connect(

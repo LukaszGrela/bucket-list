@@ -16,14 +16,19 @@ class Bucket extends React.Component {
     }
     render = () => {
         const {
-            id, connectDropTarget,
+            id,
+            connectDropTarget,
+            isDragging,
             connectDragSource,
-            name, className,
+            name,
+            className,
             addNoteHandler, notes = { list: [] } } = this.props;
         const list = notes.list.filter(note => note.bucketId === id);
+        const opacity = isDragging ? 0 : 1;
         return connectDragSource(
             connectDropTarget(
-                <div className={'bucket' + (className ? ' ' + className : '')}>
+                <div style={{ opacity }}
+                    className={'bucket' + (className ? ' ' + className : '')}>
                     <div className='bucket-content'>
                         <div className='bucket-name clearfix'>{name}</div>
                         <div className='notes-container clearfix'>
