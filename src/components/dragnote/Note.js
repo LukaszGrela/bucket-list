@@ -15,18 +15,25 @@ class Note extends React.Component {
     }
 }
 Note.propTypes = {
+    type: PropTypes.oneOf([ItemTypes.NOTE]).isRequired,
     id: PropTypes.string.isRequired,
     connectDragSource: PropTypes.func.isRequired,
     connectDragPreview: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
+};
+Note.defaultProps = {
+    type: ItemTypes.NOTE
 };
 const dragSource = {
     canDrag: (props) => {
         return true;
     },
     beginDrag: (props) => {
-        console.log(props)
-        return { id: props.id, bucketId: props.bucketId };
+        return {
+            type: props.type,
+            id: props.id,
+            bucketId: props.bucketId
+        };
     }
 }
 const collect = (connect, monitor) => ({

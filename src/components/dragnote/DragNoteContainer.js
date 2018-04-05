@@ -10,6 +10,7 @@ import { addNote } from '../../actions/actionNotes';
 
 import './styles/DragNoteContainer.scss';
 import AddWithText from '../AddWithText';
+import { ItemTypes } from './ItemTypes';
 
 class DragNoteContainer extends React.Component {
     addNote = (bucketId, note) => {
@@ -33,7 +34,9 @@ class DragNoteContainer extends React.Component {
         swapBuckets(id, oldBucketId, bucketId);
     }
     render = () => {
-        const { notes, buckets } = this.props;
+        const { notes, buckets,
+            reorderBucket,
+            findBucket } = this.props;
         return (
             <div className='drag-note-container'>
                 {/*<div>This is the DnD component, it will contain buckets and notes</div>
@@ -41,18 +44,22 @@ class DragNoteContainer extends React.Component {
                 -> Cancel|OK -> dispatch addBucket
                 -> firebase Rejected->Show Error Message|Fulfilled
                 -> update store with new Bucket
-                -> update view</div>*/}
+                -> update view</div>
+            */}
                 <div className='drag-note-container-wrapper'>
                     <div className='main-content'>
                         <div className='bucket-container'>
                             <div className='bucket-list'>
                                 {
                                     buckets.list.map((bucket, index) => <Bucket
+                                        type={ItemTypes.BUCKET}
                                         className='item'
                                         key={bucket.id}
                                         {...bucket}
                                         notes={notes}
                                         onDrop={this.onDrop}
+                                        reorderBucket={reorderBucket}
+                                        findBucket={findBucket}
                                         addNoteHandler={this.addNote}
                                     />)
                                 }
@@ -78,7 +85,11 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = (dispatch, props) => ({
     addBucket: (name) => dispatch(addBucket(name)),
     addNote: (bucketId, note) => dispatch(addNote(bucketId, note)),
-    swapBuckets: (noteId, fromBucketId, toBucketId) => dispatch(swapBuckets(noteId, fromBucketId, toBucketId))
+    swapBuckets: (noteId, fromBucketId, toBucketId) => dispatch(swapBuckets(noteId, fromBucketId, toBucketId)),
+    reorderBucket: (bucketId, targetBucketId, order) => {
+        console.log(`reorderBuckets(bucketId=${bucketId}, targetBucketId=${targetBucketId}, order=${order})`);
+    },
+    findBucket: (bucketId) => ({ index: -1, bucket: undefined })
 });
 export default
     DragDropContext(HTML5Backend)(connect(

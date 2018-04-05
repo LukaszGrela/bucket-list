@@ -4,6 +4,7 @@ import { ADD_BUCKET_START, ADD_BUCKET_FINISHED } from "../actions/actionBuckets"
 {
 bucket {
     id,
+    order,
     name,
     created_at,
     owner:userid,
@@ -24,7 +25,8 @@ export const bucketsReducer = (state = DEFAULT_STATE, action) => {
             let error = null;
             let list = [...state.list];
             if (action.success === true) {
-                list.push(payload);
+                const len = list.length;
+                list.push({ ...payload, order: len });
             } else {
                 error = payload;
             }

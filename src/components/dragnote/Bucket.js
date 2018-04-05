@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Note from './Note';
-import { DropTarget } from 'react-dnd';
+import { DropTarget, DragSource } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 import './styles/Bucket.scss';
 import AddWithText from '../AddWithText';
@@ -15,55 +15,112 @@ class Bucket extends React.Component {
         addNoteHandler && addNoteHandler(id, note);
     }
     render = () => {
-        const { id, connectDropTarget,
+        const {
+            id, connectDropTarget,
+            connectDragSource,
             name, className,
             addNoteHandler, notes = { list: [] } } = this.props;
         const list = notes.list.filter(note => note.bucketId === id);
-        return connectDropTarget(
+        return connectDragSource(
+            connectDropTarget(
+                <div className={'bucket' + (className ? ' ' + className : '')}>
+                    <div className='bucket-content'>
+                        <div className='bucket-name clearfix'>{name}</div>
+                        <div className='notes-container clearfix'>
+                            {
+                                notes.loading ? "Notes loading..." :
+                                    list.map((note, index) => <Note
+                                        key={note.id}
+                                        type={ItemTypes.NOTE}
+                                        {...note} />)
 
-            <div className={'bucket' + (className ? ' ' + className : '')}>
-                <div className='bucket-content'>
-                    <div className='bucket-name clearfix'>{name}</div>
-                    <div className='notes-container clearfix'>
-                        {
-                            notes.loading ? "Notes loading..." :
-                                list.map((note, index) => <Note key={note.id} {...note} />)
-
-                        }
-                    </div>
-                    <div className='add-note clearfix'>
-                        <AddWithText
-                            placeholder={'Type a note'}
-                            handleClick={this.addNote}
-                        />
+                            }
+                        </div>
+                        <div className='add-note clearfix'>
+                            <AddWithText
+                                placeholder={'Type a note'}
+                                handleClick={this.addNote}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            ))
     };
 }
 Bucket.propTypes = {
+    type: PropTypes.oneOf([ItemTypes.BUCKET]).isRequired,
     addNoteHandler: PropTypes.func.isRequired,
     onDrop: PropTypes.func.isRequired,
+    findBucket: PropTypes.func.isRequired,
+    reorderBucket: PropTypes.func.isRequired,
     isOver: PropTypes.bool.isRequired,
     canDrop: PropTypes.bool.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
-};
 
+
+};
+Bucket.defaultProps = {
+    type: ItemTypes.BUCKET
+};
 const dropZoneTarget = {
     canDrop: (props, monitor) => {
-        return true;
+        const { type } = monitor.getItem();
+        return type === ItemTypes.NOTE || type === ItemTypes.BUCKET;
     },
     drop: (props, monitor) => {
-        props.onDrop(props.id, monitor.getItem())
+        const { type } = monitor.getItem();
+        if (type === ItemTypes.NOTE) {
+            props.onDrop(props.id, monitor.getItem());
+        }
+    },
+    hover: (props, monitor) => {
+        const { id: draggedId, type } = monitor.getItem();
+        const { id: overId } = props;
+        if (type === ItemTypes.BUCKET) {
+            const { index: overIndex } = props.findBucket(overId);
+            props.reorderBucket(draggedId, overId, overIndex);
+        }
     }
 };
-const collect = (connect, monitor) => ({
+const collectDropZone = (connect, monitor) => ({
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop()
 });
 
-export default DropTarget(ItemTypes.NOTE,
+
+
+
+const DropZoneBucket = DropTarget([ItemTypes.NOTE, ItemTypes.BUCKET],
     dropZoneTarget,
-    collect)(Bucket);
+    collectDropZone)(Bucket);
+
+
+const dragItemSource = {
+    beginDrag: (props) => {
+        return {
+            type: props.type,
+            id: props.id,
+            originalOrder: props.order
+        }
+    },
+
+    endDrag: (props, monitor) => {
+        const { type, id: droppedId, originalOrder } = monitor.getItem();
+        const didDrop = monitor.didDrop();
+
+        if (!didDrop && type === ItemTypes.BUCKET) {
+            props.reorderBucket(droppedId, undefined, originalOrder);
+        }
+    }
+}
+const collectDragItem = (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging(),
+});
+
+const DragItemBucket = DragSource(ItemTypes.BUCKET,
+    dragItemSource,
+    collectDragItem)(DropZoneBucket);
+
+export default DragItemBucket;
