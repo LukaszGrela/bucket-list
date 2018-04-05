@@ -1,3 +1,2 @@
-# Drag and Drop test
-React Drag'n'Drop test using... React DnD :)
-Implementation of the Drag and Drop Selection interaction.
+# Bucket List
+React+Readux with React-DnD for drag and drop kanban alike/Trello similar test app.
