@@ -1,3 +1,253 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render corectly 1`] = `undefined`;
+exports[`Should render corectly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Bucket
+    addNoteHandler={[MockFunction]}
+    canDrop={false}
+    connectDropTarget={[Function]}
+    isOver={false}
+    onDrop={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <div
+        className="bucket-content"
+      >
+        <div
+          className="bucket-name clearfix"
+        />
+        <div
+          className="notes-container clearfix"
+        />
+        <div
+          className="add-note clearfix"
+        >
+          <AddWithText
+            handleClick={[Function]}
+            placeholder="Type a note"
+          />
+        </div>
+      </div>,
+      "className": "bucket",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="bucket-name clearfix"
+          />,
+          <div
+            className="notes-container clearfix"
+          />,
+          <div
+            className="add-note clearfix"
+          >
+            <AddWithText
+              handleClick={[Function]}
+              placeholder="Type a note"
+            />
+          </div>,
+        ],
+        "className": "bucket-content",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": undefined,
+            "className": "bucket-name clearfix",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [],
+            "className": "notes-container clearfix",
+          },
+          "ref": null,
+          "rendered": Array [],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <AddWithText
+              handleClick={[Function]}
+              placeholder="Type a note"
+            />,
+            "className": "add-note clearfix",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "handleClick": [Function],
+              "placeholder": "Type a note",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div
+          className="bucket-content"
+        >
+          <div
+            className="bucket-name clearfix"
+          />
+          <div
+            className="notes-container clearfix"
+          />
+          <div
+            className="add-note clearfix"
+          >
+            <AddWithText
+              handleClick={[Function]}
+              placeholder="Type a note"
+            />
+          </div>
+        </div>,
+        "className": "bucket",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="bucket-name clearfix"
+            />,
+            <div
+              className="notes-container clearfix"
+            />,
+            <div
+              className="add-note clearfix"
+            >
+              <AddWithText
+                handleClick={[Function]}
+                placeholder="Type a note"
+              />
+            </div>,
+          ],
+          "className": "bucket-content",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": undefined,
+              "className": "bucket-name clearfix",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [],
+              "className": "notes-container clearfix",
+            },
+            "ref": null,
+            "rendered": Array [],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <AddWithText
+                handleClick={[Function]}
+                placeholder="Type a note"
+              />,
+              "className": "add-note clearfix",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "handleClick": [Function],
+                "placeholder": "Type a note",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
