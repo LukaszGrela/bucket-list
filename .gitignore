@@ -32,6 +32,8 @@ bower_components
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/
 build/Release
+public/dist
+
 
 # Dependency directories
 node_modules/
@@ -60,4 +62,3 @@ src/**/*.css
 
 # dotenv environment variables file
 .env
-
