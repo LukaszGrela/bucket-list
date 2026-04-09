@@ -1,18 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Page404 from '../pages/Page404';
 import DragNote from '../pages/DragNote';
 
 const AppRouter = () => (
     <BrowserRouter>
         <div className='app'>
-            <Switch>
+            <Routes>
                 <Route exact path="/(index.html)?" component={() => {
-                    return <Redirect to='/app' />
+                    return <Navigate to='/app' />
                 }} />
                 <Route path="/app" exact component={DragNote} />
                 <Route component={Page404} />
-            </Switch>
+            </Routes>
         </div>
     </BrowserRouter>
 );
