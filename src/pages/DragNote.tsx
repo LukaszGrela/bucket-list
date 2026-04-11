@@ -1,0 +1,16 @@
+import { type FC } from "react";
+import DragNoteContainer from "../components/dragnote/DragNoteContainer";
+
+import "./styles/DragNote.scss";
+
+const DragNote: FC = () => {
+  return (
+    <div className="drag-note">
+      <header>Bucket List</header>
+      {/* Create a note bucket then create a note. You can create many buckets and move notes across. */}
+      <DragNoteContainer />
+    </div>
+  );
+};
+
+export default DragNote;
