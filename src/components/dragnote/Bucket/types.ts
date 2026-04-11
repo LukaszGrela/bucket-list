@@ -1,13 +1,12 @@
-import type { INotes } from "../types";
+import type { IBucket, INote } from "../types";
 
-export interface IProps {
-    id: string;
-    name: string;
-    className?: string;
-    addNoteHandler: (bucketId: string, note: string) => void;
-    onDrop: (bucketId: string, item: any) => void;
-    isOver: boolean;
-    canDrop: boolean;
-    connectDropTarget: (element: React.ReactNode) => React.ReactElement;
-    notes?: INotes;
+export interface IProps extends IBucket {
+  className?: string;
+  addNoteHandler: (bucketId: string, note: string) => void;
+  onDrop: (bucketId: string, item: unknown) => void;
+  isOver: boolean;
+  canDrop: boolean;
+
+  notes: INote[];
+  loading?: boolean;
 }
