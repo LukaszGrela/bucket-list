@@ -8,7 +8,9 @@ import { thunk } from "redux-thunk";
 import { notesReducer } from "../reducers/notesReducer";
 import { bucketsReducer } from "../reducers/bucketsReducer";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // Store creation
 export default () => {
