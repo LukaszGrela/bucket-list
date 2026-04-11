@@ -1,1 +1,1 @@
-export * from "../AddWithText";
+export { default as AddWithText } from "./AddWithText";

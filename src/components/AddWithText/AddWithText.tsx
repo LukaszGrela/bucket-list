@@ -1,6 +1,5 @@
-import React, { useCallback, useState, type FC } from "react";
-
 import "./AddWithText.scss";
+import React, { useCallback, useState, type FC } from "react";
 import type { IProps } from "./types";
 
 const AddWithText: FC<IProps> = ({
