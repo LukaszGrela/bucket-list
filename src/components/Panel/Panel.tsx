@@ -1,4 +1,4 @@
-import "./styles/Panel.scss";
+import "./Panel.scss";
 import { useEffect, type FC } from "react";
 import IconCross from "../../icons/IconCross";
 import type { IProps } from "./types";
