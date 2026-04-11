@@ -1,6 +1,7 @@
 import "./AddWithText.scss";
 import React, { useCallback, useState, type FC } from "react";
 import type { IProps } from "./types";
+import { classNames } from "../../utils/classNames";
 
 const AddWithText: FC<IProps> = ({
   handleClick,
@@ -29,7 +30,7 @@ const AddWithText: FC<IProps> = ({
   }, []);
 
   return (
-    <div className={"add-with-text" + (className ? " " + className : "")}>
+    <div className={classNames("add-with-text", className)}>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
