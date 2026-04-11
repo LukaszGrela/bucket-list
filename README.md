@@ -2,6 +2,9 @@
 
 React+Readux with React-DnD for drag and drop kanban alike/Trello similar test app.
 
+<img width="874" height="396" alt="image" src="https://github.com/user-attachments/assets/13233674-e050-417d-899e-46a2d153be3a" />
+
+
 ## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
